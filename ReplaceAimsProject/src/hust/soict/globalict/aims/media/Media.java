@@ -45,4 +45,7 @@ public abstract class Media {
 		return id;
 	}
 
+	public boolean equals(Object o) {
+		return (id == ((Media) o).getId());
+	}
 }

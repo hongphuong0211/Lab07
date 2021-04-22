@@ -3,6 +3,8 @@ package hust.soict.globalict.aims.order;
 import java.util.ArrayList;
 import java.util.Random;
 
+import hust.soict.globalict.aims.media.Book;
+import hust.soict.globalict.aims.media.CompactDisc;
 import hust.soict.globalict.aims.media.DigitalVideoDisc;
 import hust.soict.globalict.aims.media.Media;
 import hust.soict.globalict.aims.utils.MyDate;
@@ -138,7 +140,14 @@ public class Order {
 	public void getALuckyItem() {
 		Random lucky = new Random();
 		int i = lucky.nextInt(this.itemsOrdered.size());
-		itemsOrdered.set(i, new Media(itemsOrdered.get(i).getId(),itemsOrdered.get(i).getTitle(), itemsOrdered.get(i).getCategory(), 0));
+		if(itemsOrdered.get(i) instanceof Book) {
+			itemsOrdered.set(i, new Book(itemsOrdered.get(i).getId(),itemsOrdered.get(i).getTitle(), itemsOrdered.get(i).getCategory(), 0, ((Book) itemsOrdered.get(i)).getAuthors()));
+		}else if(itemsOrdered.get(i) instanceof DigitalVideoDisc) {
+			itemsOrdered.set(i, new DigitalVideoDisc(itemsOrdered.get(i).getId(),itemsOrdered.get(i).getTitle(), itemsOrdered.get(i).getCategory(), 0, ((DigitalVideoDisc) itemsOrdered.get(i)).getLength(), ((DigitalVideoDisc) itemsOrdered.get(i)).getDirector()));
+		}else if(itemsOrdered.get(i) instanceof CompactDisc) {
+			itemsOrdered.set(i, new CompactDisc(itemsOrdered.get(i).getId(),itemsOrdered.get(i).getTitle(), itemsOrdered.get(i).getCategory(), 0, ((CompactDisc) itemsOrdered.get(i)).getArtist(), ((CompactDisc) itemsOrdered.get(i)).getTracks()));
+		}
+		
 		printOrder();		
 	}
 	

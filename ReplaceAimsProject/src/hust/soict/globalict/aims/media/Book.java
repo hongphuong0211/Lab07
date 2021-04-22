@@ -2,11 +2,7 @@ package hust.soict.globalict.aims.media;
 
 import java.util.List;
 
-public class Book extends Media{
-	private int id;
-	private String title;
-	private String category;
-	private float cost;
+public class Book extends Media implements Comparable{
 	private List<String> authors;
 	
 	public Book(int id) {
@@ -29,21 +25,6 @@ public class Book extends Media{
 		this.authors = authors;
 	}
 	
-	public int getId() {
-		return id;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public String getCategory() {
-		return category;
-	}
-
-	public float getCost() {
-		return cost;
-	}
 
 	public List<String> getAuthors() {
 		return authors;
@@ -59,5 +40,11 @@ public class Book extends Media{
 		if(authors.contains(authorName)) {
 			authors.remove(authorName);
 		}
+	}
+
+	@Override
+	public int compareTo(Object o) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }
